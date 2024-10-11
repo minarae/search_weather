@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 
 
-API_KEY = "f4b22831d0e82edb7ad5a65fdb06dd15"
+API_KEY = ""
 
 
 def get_weather(latitude, longitude, target_date):
