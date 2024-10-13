@@ -1,7 +1,12 @@
-from search_weather.get_weather import get_weather
-from search_weather.parse_query import parse_query
+from search_weather.get_weather import WeatherService
+from search_weather.parse_query import QueryParser
 import random
 from datetime import timedelta
+import os
+from dotenv import load_dotenv
+
+query_parser = QueryParser()
+weather_service = WeatherService()
 
 
 def generate_natural_language_response(location, date, weather_info):
@@ -92,18 +97,25 @@ def generate_natural_language_response(location, date, weather_info):
     return response
 
 
-def query(query):
-    date, raw_location, location = parse_query(query)
-    if location:
-        latitude, longitude = location.latitude, location.longitude
-        weather_info = get_weather(latitude, longitude, date)
-        # str_date = date.strftime("%Y년 %m월 %d일")
-        for word in ["의", "에"]:
-            raw_location = raw_location.replace(word, "")
+def set_api_key(api_key):
+    weather_service = WeatherService()
+    # WeatherService에 API 키 설정
+    weather_service.set_api_key(api_key)
 
-        return generate_natural_language_response(raw_location, date, weather_info)
-    else:
+
+def query(query):
+    date, raw_location, location = query_parser.parse_query(query)
+    if location and date:
+        latitude, longitude = location
+        weather_info = weather_service.get_weather(latitude, longitude, date.date())
+        if isinstance(weather_info, dict):
+            return generate_natural_language_response(raw_location, date, weather_info)
+        else:
+            return weather_info
+    elif location is None:
         return "위치 정보를 추출할 수 없습니다."
+    else:
+        return "날짜 정보를 추출할 수 없습니다."
 
 
 if __name__ == "__main__":

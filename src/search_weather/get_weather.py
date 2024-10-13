@@ -10,7 +10,6 @@ class WeatherService:
 
     def set_api_key(self, api_key):
         self.api_key = api_key
-        print("API 키가 성공적으로 설정되었습니다.")
 
     def get_api_key(self):
         return self.api_key
