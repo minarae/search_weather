@@ -59,43 +59,9 @@ print(result)
 - 전체 프로세스 테스트
 - 에러 처리 테스트
 
-## Package 만들기
-
-이 프로젝트를 패키지로 만들어 배포하려면 다음 단계를 따르세요:
-
-1. 프로젝트 구조 확인:
-   - 모든 필요한 파일들이 올바른 위치에 있는지 확인합니다.
-
-2. setup.py 또는 pyproject.toml 파일 최종 확인:
-   - 버전 번호, 의존성, 메타데이터 등이 올바른지 확인합니다.
-
-3. 패키지 빌드:
-   - setup.py 사용 시: `python setup.py sdist bdist_wheel`
-   - poetry 사용 시: `poetry build`
-
-4. PyPI에 배포:
-   - setup.py 사용 시:
-     ```
-     pip install twine
-     twine upload dist/*
-     ```
-   - poetry 사용 시: `poetry publish`
-
-5. 배포 확인:
-   - PyPI 페이지에서 패키지가 올바르게 등록되었는지 확인합니다.
-
-6. 테스트 설치:
-   - 새로운 가상 환경에서 `pip install search_weather` 또는 `poetry add search_weather`로 설치해봅니다.
-
-패키지를 만들고 배포한 후에는 지속적인 관리와 업데이트가 필요합니다.
-
 ## 라이선스
 
 이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
-
-## 기여
-
-버그 리포트, 기능 제안, 풀 리퀘스트 등 모든 기여를 환영합니다. 기여하기 전에 프로젝트의 기여 가이드라인을 확인해주세요.
 
 ## 연락처
 

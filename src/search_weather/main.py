@@ -107,7 +107,7 @@ def generate_natural_language_response(location, date, weather_info):
 
 
 def set_api_key(api_key):
-    weather_service = WeatherService()
+    global weather_service
     # WeatherService에 API 키 설정
     weather_service.set_api_key(api_key)
 
