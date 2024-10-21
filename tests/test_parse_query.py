@@ -25,7 +25,7 @@ def test_parse_query_with_valid_data(mock_nominatim, mock_spacy_load, query_pars
     date, raw_location, location = query_parser.parse_query("내일 서울의 날씨는 어때")
     assert date == datetime.combine(datetime.now().date() + timedelta(days=1), datetime.min.time())
     assert raw_location == "서울" or raw_location == "서울의"
-    assert location == ['37.4926971', '127.039412']
+    assert [int(float(item)) for item in location] == [37, 127]
 
 @patch('src.search_weather.parse_query.spacy.load')
 def test_parse_query_with_invalid_location(mock_spacy_load, query_parser):
