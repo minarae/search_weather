@@ -10,15 +10,15 @@ weather_service = WeatherService()
 
 
 def ensure_ko_core_news_sm():
+    """한국어 모델이 설치되어 있는지 확인하고, 없으면 설치"""
     try:
         spacy.load("ko_core_news_sm")
     except OSError:
-        # print("Downloading Korean language model...")
         subprocess.check_call(["python", "-m", "spacy", "download", "ko_core_news_sm"])
-        # print("Download completed.")
 
 
 def generate_natural_language_response(location, date, weather_info):
+    """날씨 정보를 자연스러운 한국어 문장으로 변환"""
     if isinstance(weather_info, str):
         return weather_info  # 에러 메시지 그대로 반환
 
@@ -107,13 +107,13 @@ def generate_natural_language_response(location, date, weather_info):
 
 
 def set_api_key(api_key):
+    """WeatherService에 API 키를 설정"""
     global weather_service
-    # WeatherService에 API 키 설정
     weather_service.set_api_key(api_key)
 
 
 def query(query):
-    # 패키지 초기화 시 모델 확인
+    """사용자의 쿼리를 처리하고 날씨 정보를 반환"""
     ensure_ko_core_news_sm()
     date, raw_location, location = query_parser.parse_query(query)
     if location and date:
@@ -127,18 +127,3 @@ def query(query):
         return "위치 정보를 추출할 수 없습니다."
     else:
         return "날짜 정보를 추출할 수 없습니다."
-
-
-if __name__ == "__main__":
-    queries = [
-        "내일 서울의 날씨는 어때",
-        "내일 모레 하와이 날씨는 어떨거 같아",
-        "주말에 부산 날씨는 어떨거 같아",
-        "이번 주말 제주도 날씨 좋아?",
-        "다음달 뉴욕 날씨 어떨까"
-    ]
-
-    for q in queries:
-        result = query(q)
-        print(result)
-        print()
