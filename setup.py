@@ -22,24 +22,24 @@ class PostInstallCommand(install):
 
 setup(
     name="search_weather",
-    version="0.1.1",
+    version="0.1.3",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
         "requests",
         "geopy",
-        "spacy>=3.0.0,<4.0.0",
+        "spacy>=3.8.2,<4.0.0",
     ],
     extras_require={
         "dev": ["pytest", "flake8"],
     },
-    python_requires=">=3.6",
-    author="Your Name",
-    author_email="your.email@example.com",
+    python_requires=">=3.11",
+    author="minarae",
+    author_email="minarae@gmail.com",
     description="A package for searching weather information",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/search_weather",
+    url="https://github.com/minarae/search_weather",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

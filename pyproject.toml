@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "search_weather"
-version = "0.1.1"
+version = "0.1.3"
 description = "날씨 검색 패키지"
 authors = ["minarae <minarae@gmail.com>"]
 license = "MIT"
